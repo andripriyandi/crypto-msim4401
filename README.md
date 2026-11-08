@@ -41,17 +41,7 @@ npm run preview
 
 `npm run build` menjalankan pemeriksaan tipe dengan `vue-tsc`, lalu membuat berkas produksi di direktori `dist/`.
 
-## Publikasi gratis dengan GitHub Pages
-
-Repository ini memiliki workflow CI/CD di `.github/workflows/pages.yml`. Setiap pull request ke `main` diperiksa dengan `npm ci` dan build produksi. Setiap push ke `main` yang lolos build akan otomatis dipublikasikan ke GitHub Pages.
-
-Untuk mengaktifkan publikasi pertama kali:
-
-1. Pastikan repository `andripriyandi/crypto-msim4401` bersifat **Public**. GitHub Pages pada paket GitHub Free memerlukan repository publik.
-2. Di GitHub, buka **Settings → Pages → Build and deployment**, lalu pilih **GitHub Actions** sebagai **Source**.
-3. Push perubahan ini ke branch `main`, kemudian tunggu workflow **Build and deploy to GitHub Pages** selesai pada tab **Actions**.
-
-Alamat situs: <https://andripriyandi.github.io/crypto-msim4401/home/>. URL halaman tidak memakai `#`. Workflow menyalin halaman hasil build ke `home/index.html` agar tautan langsung dan refresh pada `/home/` tetap bekerja di GitHub Pages. Konfigurasi Vite mengatur path aset `/crypto-msim4401/` untuk build produksi, sementara `npm run dev` tetap berjalan di root secara lokal.
+Versi publik: <https://andripriyandi.github.io/crypto-msim4401/home/>.
 
 ## Struktur proyek
 
