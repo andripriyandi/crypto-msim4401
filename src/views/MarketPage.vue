@@ -21,18 +21,46 @@
             <div class="page-head"><div><span class="eyebrow">MARKET OVERVIEW</span><h1>Explore the market<span>.</span></h1><p>Harga aset digital, langsung dalam satu tampilan.</p></div><div class="head-actions"><button class="theme-button" type="button" :aria-label="theme === 'dark' ? 'Aktifkan mode terang' : 'Aktifkan mode gelap'" :aria-pressed="theme === 'light'" @click="toggleTheme"><ion-icon :icon="theme === 'dark' ? sunnyOutline : moonOutline" /><span>{{ theme === 'dark' ? 'Light mode' : 'Dark mode' }}</span></button><button class="refresh-button" type="button" :disabled="loading || refreshing" @click="refreshCoins" aria-label="Refresh data cryptocurrency"><ion-icon :icon="refreshOutline" :class="{ spinning: refreshing }" /><span>{{ refreshing ? 'Memperbarui' : 'Refresh data' }}</span></button></div></div>
 
             <section class="overview-grid" aria-label="Ringkasan pasar">
+              <template v-if="loading">
+                <div class="featured-card featured-skeleton" role="status" aria-label="Memuat ringkasan aset teratas">
+                  <span class="skeleton skeleton-pill" aria-hidden="true" />
+                  <div class="featured-skeleton-body" aria-hidden="true">
+                    <span class="skeleton skeleton-kicker" />
+                    <div class="skeleton-identity"><span class="skeleton skeleton-avatar" /><span class="skeleton skeleton-name" /></div>
+                    <span class="skeleton skeleton-featured-price" />
+                  </div>
+                  <span class="skeleton skeleton-featured-foot" aria-hidden="true" />
+                </div>
+                <div class="metric-grid" role="status" aria-label="Memuat statistik pasar">
+                  <div v-for="item in 2" :key="item" class="metric metric-skeleton" aria-hidden="true">
+                    <span class="skeleton skeleton-metric-icon" />
+                    <div class="skeleton-metric-copy"><span class="skeleton skeleton-metric-label" /><span class="skeleton skeleton-metric-value" /><span class="skeleton skeleton-metric-caption" /></div>
+                  </div>
+                </div>
+              </template>
+              <template v-else>
               <div class="featured-card"><div class="featured-orbit" aria-hidden="true" /><div class="featured-top"><span class="live-pill"><i /> LIVE MARKET</span><ion-icon :icon="trendingUpOutline" /></div><div class="featured-body"><span class="featured-kicker">ASET PERINGKAT #1</span><div class="featured-name"><span class="featured-avatar">{{ topCoin?.symbol?.slice(0, 1) || '₿' }}</span><strong>{{ topCoin?.name || 'Memuat aset...' }}</strong><small>{{ topCoin?.symbol || '—' }}</small></div><div class="featured-price">{{ topCoin ? formatUsd(topCoin.price_usd) : '—' }} <small>USD</small></div></div><div class="featured-foot"><span>Data dari CoinLore</span><span>{{ lastUpdated ? `Update ${formatTime(lastUpdated)}` : 'Menunggu data' }}</span></div></div>
               <div class="metric-grid"><div class="metric"><span class="metric-icon purple"><ion-icon :icon="layersOutline" /></span><div><small>TOTAL ASET</small><strong>{{ totalCoins ? formatInteger(totalCoins) : '—' }}</strong><span>tercatat di CoinLore</span></div></div><div class="metric"><span class="metric-icon mint"><ion-icon :icon="listOutline" /></span><div><small>DATA DIMUAT</small><strong>{{ formatInteger(coins.length) }}</strong><span>aset siap dijelajahi</span></div></div></div>
+              </template>
             </section>
 
             <section class="market-section" aria-labelledby="market-title">
               <div class="section-title"><div><span class="eyebrow">DISCOVER</span><h2 id="market-title">Daftar cryptocurrency</h2></div><span class="source"><i /> CoinLore API</span></div>
               <div class="toolbar"><div class="active-tab"><ion-icon :icon="statsChartOutline" /> Semua aset <span>{{ formatInteger(coins.length) }}</span></div><div class="search"><ion-icon :icon="searchOutline" /><input v-model.trim="search" type="search" aria-label="Cari nama atau simbol cryptocurrency" placeholder="Cari nama atau simbol..." /><button v-if="search" type="button" aria-label="Hapus pencarian" @click="search = ''"><ion-icon :icon="closeOutline" /></button></div></div>
               <div class="market-table"><div class="table-head"><span>#</span><span>ASET</span><span>HARGA USD</span><span>24 JAM</span></div>
-                <div v-if="loading" class="state" role="status"><div class="loader" /><strong>Mengambil data pasar...</strong><p>Mohon tunggu sebentar.</p></div>
+                <div v-if="loading" role="status" aria-label="Mengambil data pasar">
+                  <article v-for="item in 6" :key="item" class="coin-row skeleton-row" aria-hidden="true">
+                    <span class="skeleton skeleton-rank" />
+                    <div class="coin-identity"><span class="skeleton skeleton-avatar" /><span class="skeleton-coin-names"><span class="skeleton skeleton-coin-name" /><span class="skeleton skeleton-coin-symbol" /></span></div>
+                    <span class="skeleton skeleton-price" />
+                    <span class="skeleton skeleton-change" />
+                  </article>
+                </div>
                 <div v-else-if="error && !coins.length" class="state" role="alert"><ion-icon :icon="cloudOfflineOutline" /><strong>Data belum dapat dimuat</strong><p>{{ error }}</p><button class="small-button" type="button" @click="refreshCoins">Coba lagi</button></div>
                 <div v-else-if="!filteredCoins.length" class="state"><ion-icon :icon="searchOutline" /><strong>Aset tidak ditemukan</strong><p>Coba nama atau simbol lain.</p></div>
-                <div v-else><article v-for="coin in filteredCoins" :key="coin.id" class="coin-row"><span class="rank">{{ coin.rank }}</span><div class="coin-identity"><span class="coin-avatar" :style="avatarStyle(coin.symbol)">{{ coin.symbol.slice(0, 1) }}</span><span class="coin-names"><strong>{{ coin.name }}</strong><small>{{ coin.symbol }}</small></span></div><div class="coin-price"><strong>{{ formatUsd(coin.price_usd) }}</strong><small>USD</small></div><div class="coin-change" :class="changeClass(coin.percent_change_24h)">{{ formatChange(coin.percent_change_24h) }}</div></article></div>
+                <div v-else><article v-for="coin in filteredCoins" :key="coin.id" class="coin-row"><span class="rank">{{ coin.rank }}</span><div class="coin-identity"><span class="coin-avatar" :style="avatarStyle(coin.symbol)">{{ coin.symbol.slice(0, 1) }}</span><span class="coin-names"><strong>{{ coin.name }}</strong><small>{{ coin.symbol }}</small></span></div><div class="coin-price"><strong>{{ formatUsd(coin.price_usd) }}</strong><small>USD</small></div><div class="coin-change" :class="changeClass(coin.percent_change_24h)">{{ formatChange(coin.percent_change_24h) }}</div></article>
+                  <template v-if="loadingMore"><article v-for="item in 3" :key="`more-${item}`" class="coin-row skeleton-row" aria-hidden="true"><span class="skeleton skeleton-rank" /><div class="coin-identity"><span class="skeleton skeleton-avatar" /><span class="skeleton-coin-names"><span class="skeleton skeleton-coin-name" /><span class="skeleton skeleton-coin-symbol" /></span></div><span class="skeleton skeleton-price" /><span class="skeleton skeleton-change" /></article></template>
+                </div>
               </div>
               <p v-if="error && coins.length" class="inline-error" role="alert">{{ error }}</p>
               <div v-if="coins.length" class="pagination-panel" aria-label="Navigasi daftar aset">

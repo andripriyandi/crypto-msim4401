@@ -97,3 +97,10 @@
 :root[data-theme='light'] .pagination-track { background: #e6e4ef; }
 :root[data-theme='light'] footer { border-color: #e2e7ef; color: #7e8ba0; }
 :root[data-theme='light'] footer a { color: #644fb2; }
+
+:root[data-theme='light'] .skeleton {
+  background-image: linear-gradient(100deg, #e5e9f1 8%, #f7f9fc 40%, #e5e9f1 72%);
+}
+:root[data-theme='light'] .featured-skeleton .skeleton {
+  background-image: linear-gradient(100deg, #ffffff24 8%, #ffffff59 40%, #ffffff24 72%);
+}
