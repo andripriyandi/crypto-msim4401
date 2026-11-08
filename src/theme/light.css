@@ -1,0 +1,99 @@
+.head-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex: none;
+}
+
+.theme-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid #38334f;
+  border-radius: 10px;
+  background: #211d35;
+  color: #dbd5ff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.theme-button:hover { background: #322a53; }
+.theme-button ion-icon { font-size: 17px; }
+
+@media (max-width: 600px) {
+  .head-actions { gap: 6px; }
+  .theme-button { width: 37px; height: 37px; padding: 0; border-radius: 9px; }
+  .theme-button span { display: none; }
+}
+
+:root[data-theme='light'] body { background: #f6f8fc; color: #1d2940; }
+:root[data-theme='light'] ion-content.market-content { --background: #f6f8fc; }
+:root[data-theme='light'] .app-layout { background: #f6f8fc; }
+:root[data-theme='light'] .sidebar { background: #ffffff; border-color: #e3e7ef; }
+:root[data-theme='light'] .brand { color: #1b2640; }
+:root[data-theme='light'] .sidebar-label,
+:root[data-theme='light'] .sidebar-foot { color: #8290a5; }
+:root[data-theme='light'] .nav-active { background: #eeeafd; color: #5947a7; }
+:root[data-theme='light'] .sidebar-card {
+  background: linear-gradient(135deg, #f4f0ff, #edf4ff);
+  border-color: #e0dff2;
+  color: #27344c;
+}
+:root[data-theme='light'] .sidebar-card p { color: #6b7890; }
+:root[data-theme='light'] .mobile-header { background: #ffffff; border-color: #e3e7ef; }
+:root[data-theme='light'] .mobile-header > span { color: #7887a0; }
+:root[data-theme='light'] .page-head h1,
+:root[data-theme='light'] .section-title h2 { color: #1c2940; }
+:root[data-theme='light'] .page-head p { color: #718198; }
+:root[data-theme='light'] .refresh-button,
+:root[data-theme='light'] .theme-button {
+  background: #ffffff;
+  border-color: #dce2ed;
+  color: #5d4baa;
+}
+:root[data-theme='light'] .refresh-button:hover,
+:root[data-theme='light'] .theme-button:hover { background: #f0ecff; }
+:root[data-theme='light'] .metric { background: #ffffff; border-color: #e2e7f0; box-shadow: 0 8px 24px #23345c0a; }
+:root[data-theme='light'] .metric strong { color: #1c2940; }
+:root[data-theme='light'] .metric small { color: #718098; }
+:root[data-theme='light'] .metric div span { color: #8793a6; }
+:root[data-theme='light'] .source { color: #6e7d94; }
+:root[data-theme='light'] .toolbar { border-color: #dce2ec; }
+:root[data-theme='light'] .active-tab { color: #5c4aac; }
+:root[data-theme='light'] .active-tab span { background: #eee9ff; color: #6855b5; }
+:root[data-theme='light'] .search { background: #ffffff; border-color: #dce2ec; color: #718198; }
+:root[data-theme='light'] .search input { color: #1c2940; }
+:root[data-theme='light'] .search input::placeholder { color: #93a0b2; }
+:root[data-theme='light'] .search button { color: #6e7d94; }
+:root[data-theme='light'] .market-table { background: #ffffff; border-color: #e1e6ef; box-shadow: 0 10px 28px #23345c0a; }
+:root[data-theme='light'] .table-head { border-color: #e7ebf2; background: #f7f8fc; color: #77869b; }
+:root[data-theme='light'] .coin-row { border-color: #edf0f5; }
+:root[data-theme='light'] .coin-row:hover { background: #f8f6ff; }
+:root[data-theme='light'] .rank,
+:root[data-theme='light'] .coin-names small,
+:root[data-theme='light'] .coin-price small { color: #75849a; }
+:root[data-theme='light'] .coin-names strong,
+:root[data-theme='light'] .coin-price strong { color: #24324a; }
+:root[data-theme='light'] .coin-change.positive { color: #11805e; }
+:root[data-theme='light'] .coin-change.negative { color: #cb4f62; }
+:root[data-theme='light'] .coin-change.neutral { color: #7d8aa0; }
+:root[data-theme='light'] .state strong { color: #24324a; }
+:root[data-theme='light'] .state p { color: #718198; }
+:root[data-theme='light'] .loader { border-color: #e3e6f2; border-top-color: #836be1; }
+:root[data-theme='light'] .small-button { background: #f2efff; border-color: #d9cff7; color: #644fb2; }
+:root[data-theme='light'] .small-button:hover { background: #e9e2ff; }
+:root[data-theme='light'] .pagination-panel {
+  background: linear-gradient(110deg, #ffffff, #f7f5ff);
+  border-color: #dfe3ed;
+  box-shadow: 0 8px 24px #23345c0a;
+}
+:root[data-theme='light'] .pagination-symbol { background: #eee8ff; border-color: #d9ccf7; color: #775dcb; }
+:root[data-theme='light'] .pagination-copy strong { color: #26334b; }
+:root[data-theme='light'] .pagination-copy span { color: #718098; }
+:root[data-theme='light'] .pagination-status { color: #6955b5; }
+:root[data-theme='light'] .pagination-track { background: #e6e4ef; }
+:root[data-theme='light'] footer { border-color: #e2e7ef; color: #7e8ba0; }
+:root[data-theme='light'] footer a { color: #644fb2; }

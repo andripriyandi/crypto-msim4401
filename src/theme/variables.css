@@ -1,0 +1,17 @@
+:root {
+  color-scheme: dark;
+  --ion-font-family: 'DM Sans', sans-serif;
+  --ion-background-color: #080d18;
+  --ion-text-color: #f6f8fc;
+  --ion-color-primary: #9a88ff;
+  --ion-color-primary-rgb: 154, 136, 255;
+  --ion-color-primary-contrast: #080d18;
+  --ion-color-primary-shade: #8878e0;
+  --ion-color-primary-tint: #a596ff;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --ion-background-color: #f6f8fc;
+  --ion-text-color: #1d2940;
+}

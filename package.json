@@ -1,0 +1,25 @@
+{
+  "name": "nexa-crypto-msim4401",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@ionic/vue": "^8.7.6",
+    "@ionic/vue-router": "^8.8.19",
+    "axios": "^1.13.2",
+    "ionicons": "^7.4.0",
+    "vue": "^3.5.24",
+    "vue-router": "^4.6.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.4",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.1",
+    "vue-tsc": "^2.2.12"
+  }
+}
